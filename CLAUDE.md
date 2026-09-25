@@ -44,6 +44,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 ## Working rules
 
 - Never read, print, or commit `config.php`
+- Never run `git push`, and never read or modify anything in `~/.ssh` or git/SSH configuration. The user pushes manually.
 - Ask before changing the database schema (anything in `database/` or table structure)
 - Make small, focused changes and explain what changed
 - Do not touch files outside `/var/www/html`
