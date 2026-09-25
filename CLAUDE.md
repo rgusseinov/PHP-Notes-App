@@ -7,7 +7,9 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 
 ## Stack
 
-- PHP 8.3, no frameworks, no Composer dependencies for now
+- PHP 8.4, no frameworks, no Composer dependencies for now
+  - Apache serves the app with PHP 8.4.25
+  - The default `php` CLI on this machine is 7.4 and must not be used for this project — always use `php8.4`
 - MySQL 8.4 via PDO
 - Plain HTML/CSS, minimal vanilla JS only if needed
 
@@ -37,7 +39,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 ## Commands
 
 - App is served by Apache from `/var/www/html` at `http://localhost/` — do not start a dev server
-- Syntax check a file: `php -l <file>`
+- Syntax check a file: `php8.4 -l <file>`
 
 ## Working rules
 
@@ -48,7 +50,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 
 ## Definition of done
 
-- `php -l` passes for every changed PHP file
+- `php8.4 -l` passes for every changed PHP file
 - Feature works at http://localhost/
 - No PHP warnings or notices
 - UI text in English
