@@ -1,0 +1,1 @@
+ALTER TABLE notes ADD COLUMN image VARCHAR(255) NULL AFTER content;

@@ -35,6 +35,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 - Database: `notes_app`, charset `utf8mb4`, collation `utf8mb4_unicode_ci`
 - Schema lives in `database/schema.sql`
 - Apply schema: `mysql -u <user> -p notes_app < database/schema.sql` (ask me to run it, do not run it yourself)
+- Schema changes go in two places: update `database/schema.sql` to the final structure, and add a numbered migration file in `database/migrations/` for existing databases. The user applies migrations manually.
 
 ## Commands
 
