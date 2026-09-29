@@ -160,10 +160,10 @@ article small {
     margin: 0;
 }
 
-.note-actions button {
+.note-actions form button {
     background: var(--color-danger);
 }
 
-.note-actions button:hover {
+.note-actions form button:hover {
     background: #b91c1c;
 }

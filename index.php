@@ -209,6 +209,9 @@ $notes = $repository->all();
                 <p><small><?php echo h($note['created_at']); ?></small></p>
                 <p class="note-actions">
                     <a href="index.php?edit=<?php echo h((string) $note['id']); ?>">Edit</a>
+                    <button type="button" class="copy-btn"
+                            data-title="<?php echo h($note['title']); ?>"
+                            data-content="<?php echo h($note['content']); ?>">Copy</button>
                     <form method="post" action="index.php" onsubmit="return confirm('Delete this note?');">
                         <input type="hidden" name="csrf_token" value="<?php echo h($_SESSION['csrf_token']); ?>">
                         <input type="hidden" name="action" value="delete">
@@ -232,6 +235,24 @@ $notes = $repository->all();
 
             updateCount();
             textarea.addEventListener('input', updateCount);
+        })();
+
+        (function () {
+            var buttons = document.querySelectorAll('.copy-btn');
+
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var text = button.dataset.title + '\n\n' + button.dataset.content;
+
+                    navigator.clipboard.writeText(text).then(function () {
+                        var originalLabel = button.textContent;
+                        button.textContent = 'Copied!';
+                        setTimeout(function () {
+                            button.textContent = originalLabel;
+                        }, 1500);
+                    });
+                });
+            });
         })();
     </script>
 </body>
