@@ -49,6 +49,8 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 - Ask before changing the database schema (anything in `database/` or table structure)
 - Make small, focused changes and explain what changed
 - Do not touch files outside `/var/www/html`
+- Branch naming: `<type>/<short-kebab-case-description>`, where type is `feature`, `fix`, `chore` or `refactor`. Example: `feature/note-tags`.
+- Commit messages: imperative mood, concise summary line under 72 chars, no period at the end. Example: "Add tag filtering to notes list".
 
 ## Definition of done
 
