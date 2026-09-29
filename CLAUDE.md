@@ -7,7 +7,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 
 ## Stack
 
-- PHP 8.4, no frameworks, no Composer dependencies for now
+- PHP 8.4, no frameworks; Composer dev-dependencies (linting, static analysis) are allowed, but no runtime/production dependencies without discussion
   - Apache serves the app with PHP 8.4.25
   - The default `php` CLI on this machine is 7.4 and must not be used for this project — always use `php8.4`
 - MySQL 8.4 via PDO
