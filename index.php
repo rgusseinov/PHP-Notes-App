@@ -97,6 +97,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'updat
     exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete') {
+    $id = filter_var($_POST['id'] ?? null, FILTER_VALIDATE_INT);
+
+    if ($id === false || $id === null || $repository->find($id) === null) {
+        http_response_code(404);
+        echo 'Note not found.';
+        exit;
+    }
+
+    $repository->delete($id);
+    header('Location: index.php');
+    exit;
+}
+
 $errors = [];
 $old = ['title' => '', 'content' => ''];
 
@@ -187,7 +201,15 @@ $notes = $repository->all();
                 <h2><?php echo h($note['title']); ?></h2>
                 <p><?php echo nl2br(h($note['content'])); ?></p>
                 <p><small><?php echo h($note['created_at']); ?></small></p>
-                <p><a href="index.php?edit=<?php echo h((string) $note['id']); ?>">Edit</a></p>
+                <p>
+                    <a href="index.php?edit=<?php echo h((string) $note['id']); ?>">Edit</a>
+                    <form method="post" action="index.php" onsubmit="return confirm('Delete this note?');">
+                        <input type="hidden" name="csrf_token" value="<?php echo h($_SESSION['csrf_token']); ?>">
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="id" value="<?php echo h((string) $note['id']); ?>">
+                        <button type="submit">Delete</button>
+                    </form>
+                </p>
             </article>
         <?php endforeach; ?>
     <?php endif; ?>
