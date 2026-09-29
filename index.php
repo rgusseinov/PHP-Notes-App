@@ -5,6 +5,9 @@ declare(strict_types=1);
 require_once __DIR__ . '/src/Database.php';
 require_once __DIR__ . '/src/NoteRepository.php';
 
+use App\Database;
+use App\NoteRepository;
+
 session_start();
 
 function h(string $value): string
@@ -155,13 +158,13 @@ $notes = $repository->all();
     <div class="container">
     <h1>Notes</h1>
 
-    <?php if ($editNotFound): ?>
+    <?php if ($editNotFound) : ?>
         <p class="not-found">Note not found.</p>
     <?php endif; ?>
 
-    <?php if ($errors !== []): ?>
+    <?php if ($errors !== []) : ?>
         <ul class="errors">
-            <?php foreach ($errors as $error): ?>
+            <?php foreach ($errors as $error) : ?>
                 <li><?php echo h($error); ?></li>
             <?php endforeach; ?>
         </ul>
@@ -170,10 +173,10 @@ $notes = $repository->all();
     <form method="post" action="index.php">
         <input type="hidden" name="csrf_token" value="<?php echo h($_SESSION['csrf_token']); ?>">
 
-        <?php if ($isEditing): ?>
+        <?php if ($isEditing) : ?>
             <input type="hidden" name="action" value="update">
             <input type="hidden" name="id" value="<?php echo h((string) $editingNote['id']); ?>">
-        <?php else: ?>
+        <?php else : ?>
             <input type="hidden" name="action" value="create">
         <?php endif; ?>
 
@@ -190,16 +193,16 @@ $notes = $repository->all();
 
         <p>
             <button type="submit"><?php echo $isEditing ? 'Update note' : 'Add note'; ?></button>
-            <?php if ($isEditing): ?>
+            <?php if ($isEditing) : ?>
                 <a href="index.php">Cancel</a>
             <?php endif; ?>
         </p>
     </form>
 
-    <?php if ($notes === []): ?>
+    <?php if ($notes === []) : ?>
         <p>No notes yet.</p>
-    <?php else: ?>
-        <?php foreach ($notes as $note): ?>
+    <?php else : ?>
+        <?php foreach ($notes as $note) : ?>
             <article>
                 <h2><?php echo h($note['title']); ?></h2>
                 <p><?php echo nl2br(h($note['content'])); ?></p>

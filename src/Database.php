@@ -2,6 +2,11 @@
 
 declare(strict_types=1);
 
+namespace App;
+
+use PDO;
+use RuntimeException;
+
 class Database
 {
     private static ?PDO $connection = null;

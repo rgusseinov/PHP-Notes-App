@@ -41,6 +41,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 
 - App is served by Apache from `/var/www/html` at `http://localhost/` — do not start a dev server
 - Syntax check a file: `php8.4 -l <file>`
+- Composer must be run as `php8.4 /usr/bin/composer <command>` (the default `composer` uses PHP 7.4 and fails on Composer's own PHP 8 syntax)
 
 ## Working rules
 
