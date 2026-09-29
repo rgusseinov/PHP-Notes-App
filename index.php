@@ -149,12 +149,14 @@ $notes = $repository->all();
 <head>
     <meta charset="UTF-8">
     <title>Notes App</title>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+    <div class="container">
     <h1>Notes</h1>
 
     <?php if ($editNotFound): ?>
-        <p>Note not found.</p>
+        <p class="not-found">Note not found.</p>
     <?php endif; ?>
 
     <?php if ($errors !== []): ?>
@@ -201,7 +203,7 @@ $notes = $repository->all();
                 <h2><?php echo h($note['title']); ?></h2>
                 <p><?php echo nl2br(h($note['content'])); ?></p>
                 <p><small><?php echo h($note['created_at']); ?></small></p>
-                <p>
+                <p class="note-actions">
                     <a href="index.php?edit=<?php echo h((string) $note['id']); ?>">Edit</a>
                     <form method="post" action="index.php" onsubmit="return confirm('Delete this note?');">
                         <input type="hidden" name="csrf_token" value="<?php echo h($_SESSION['csrf_token']); ?>">
@@ -213,5 +215,6 @@ $notes = $repository->all();
             </article>
         <?php endforeach; ?>
     <?php endif; ?>
+    </div>
 </body>
 </html>
