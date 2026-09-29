@@ -184,7 +184,8 @@ $notes = $repository->all();
 
         <p>
             <label for="content">Content</label><br>
-            <textarea id="content" name="content" rows="5"><?php echo h($formContent); ?></textarea>
+            <textarea id="content" name="content" rows="5"><?php echo h($formContent); ?></textarea><br>
+            <span id="content-count" class="char-count"></span>
         </p>
 
         <p>
@@ -216,5 +217,19 @@ $notes = $repository->all();
         <?php endforeach; ?>
     <?php endif; ?>
     </div>
+
+    <script>
+        (function () {
+            var textarea = document.getElementById('content');
+            var counter = document.getElementById('content-count');
+
+            function updateCount() {
+                counter.textContent = textarea.value.length + ' characters';
+            }
+
+            updateCount();
+            textarea.addEventListener('input', updateCount);
+        })();
+    </script>
 </body>
 </html>
