@@ -20,8 +20,8 @@ function validateNote(string $title, string $content): array
     $errors = [];
     if ($title === '') {
         $errors['title'] = 'Title is required.';
-    } elseif (mb_strlen($title) > 255) {
-        $errors['title'] = 'Title must be at most 255 characters.';
+    } elseif (mb_strlen($title) > 30) {
+        $errors['title'] = 'Title must be at most 30 characters.';
     }
     if ($content === '') {
         $errors['content'] = 'Content is required.';
@@ -182,7 +182,8 @@ $notes = $repository->all();
 
         <p>
             <label for="title">Title</label><br>
-            <input type="text" id="title" name="title" maxlength="255" value="<?php echo h($formTitle); ?>">
+            <input type="text" id="title" name="title" maxlength="30" value="<?php echo h($formTitle); ?>"><br>
+            <span id="title-count" class="char-count"></span>
         </p>
 
         <p>
@@ -253,6 +254,19 @@ $notes = $repository->all();
                     });
                 });
             });
+        })();
+
+        (function () {
+            var title = document.getElementById('title');
+            var titleCounter = document.getElementById('title-count');
+
+            function updateTitleLimit() {
+                title.classList.toggle('title-over-limit', title.value.length > 30);
+                titleCounter.textContent = title.value.length + '/30 characters';
+            }
+
+            updateTitleLimit();
+            title.addEventListener('input', updateTitleLimit);
         })();
     </script>
 </body>

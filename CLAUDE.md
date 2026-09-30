@@ -29,6 +29,7 @@ PHP Notes App — a simple single-page notes application for learning purposes. 
 - Use PDO prepared statements only — never interpolate variables into SQL strings
 - Escape all output with `htmlspecialchars`
 - Every form that changes data (create/edit/delete) must include and verify a CSRF token
+- Title max length: 30 characters (enforced via HTML `maxlength` and server-side validation)
 
 ## Database
 
