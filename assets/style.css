@@ -92,6 +92,14 @@ textarea:focus {
     outline-offset: 1px;
 }
 
+.title-over-limit {
+    border-color: var(--color-danger);
+}
+
+.title-over-limit:focus {
+    outline-color: var(--color-danger);
+}
+
 textarea {
     resize: vertical;
 }
